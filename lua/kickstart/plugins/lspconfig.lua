@@ -7,7 +7,8 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       'onsails/lspkind.nvim',
-
+      'mfussenegger/nvim-dap',
+      'mhartington/formatter.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
 
       { 'folke/neodev.nvim', opts = {} },
@@ -49,7 +50,7 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         lua_ls = {
           -- cmd = {...},
