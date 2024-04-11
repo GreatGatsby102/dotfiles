@@ -27,7 +27,7 @@ return {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-cmdline',
-      'tjdevries/colorbuddy.nvim',
+      'onsails/lspkind.nvim'
     },
 
     config = function()

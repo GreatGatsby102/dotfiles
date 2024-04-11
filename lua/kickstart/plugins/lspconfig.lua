@@ -1,5 +1,7 @@
 return {
   { -- LSP Configuration & Plugins
+    { 'mfussenegger/nvim-jdtls' },
+
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
