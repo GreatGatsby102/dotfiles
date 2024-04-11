@@ -9,6 +9,12 @@ return {
       'onsails/lspkind.nvim',
       'mfussenegger/nvim-dap',
       'mhartington/formatter.nvim',
+      { 'folke/trouble.nvim', opts = {
+        height = 5,
+        auto_open = true,
+        auto_close = false,
+      } },
+
       { 'j-hui/fidget.nvim', opts = {} },
 
       { 'folke/neodev.nvim', opts = {} },
