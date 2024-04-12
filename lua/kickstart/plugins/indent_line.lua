@@ -3,6 +3,17 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     -- See `:help ibl`
     main = 'ibl',
-    opts = {},
+    opts = {
+      indent = { highlight = {'CursorColumn', 'Whitespace'}, char = ""},
+      whitespace = {
+        highlight = {'CursorColumn', 'Whitespace'},
+        remove_blankline_trail = false,
+      },
+      scope = {
+        char = '|',
+        show_start = false,
+        show_end = false,
+      },
+    },
   },
 }
