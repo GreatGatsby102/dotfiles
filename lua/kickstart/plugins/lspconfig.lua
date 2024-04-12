@@ -12,7 +12,7 @@ return {
       'mfussenegger/nvim-dap',
       'mhartington/formatter.nvim',
       { 'folke/trouble.nvim', opts = {
-        height = 5,
+        height = 7,
         auto_open = true,
         auto_close = false,
       } },
