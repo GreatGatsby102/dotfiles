@@ -25,8 +25,6 @@ return {
         lua = { 'stylua' },
         java = { 'google-java-format' },
         c = { 'clang-format' },
-        python = { "isort", "black", 'codespell'},
-        javascript = { { "prettierd", "prettier" } },
       },
     },
   },

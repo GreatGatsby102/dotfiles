@@ -29,9 +29,8 @@ require('lazy').setup({
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
 
-  { import = 'custom.plugins' },
-}, {
-  ui = {
+  { import = 'custom.plugins' }, },
+  { ui = {
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',
