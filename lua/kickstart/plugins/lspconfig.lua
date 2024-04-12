@@ -15,6 +15,8 @@ return {
         height = 7,
         auto_open = true,
         auto_close = false,
+        auto_preview = false,
+        use_diagnostic_signs = true,
       } },
 
       { 'j-hui/fidget.nvim', opts = {} },
