@@ -23,8 +23,10 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- python = { "isort", "black" },
-        -- javascript = { { "prettierd", "prettier" } },
+        java = { 'google-java-format' },
+        c = { 'clang-format' },
+        python = { "isort", "black", 'codespell'},
+        javascript = { { "prettierd", "prettier" } },
       },
     },
   },
