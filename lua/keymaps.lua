@@ -1,5 +1,4 @@
 --  See `:help vim.keymap.set()`
-
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('i', 'jj', '<Esc>')
@@ -24,6 +23,24 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Neotree keymap 
+vim.keymap.set('n', '<C-b>', '<Cmd>Neotree toggle<CR>')
+
+-- hop.nvim keymap
+-- Pattern matching
+vim.api.nvim_set_keymap("n", "<leader>j", "<cmd>HopPattern<CR>", {noremap=true})
+-- Line matching
+vim.api.nvim_set_keymap("n", "<Leader>l", "<cmd>HopLine<CR>", {noremap=true})
+
+-- Substitue.nvim
+-- Grep and paste
+vim.keymap.set("n", "sx", "<cmd>lua require('substitute.exchange').operator()<cr>", { noremap = true })
+vim.keymap.set("v", "sx", "<cmd>lua require('substitute.exchange').operator()<cr>", { noremap = true })
+-- Clear grep
+vim.keymap.set("v", "sxc", "<cmd>lua require('substitute.exchange').cancel()<cr>", { noremap = true })
+vim.keymap.set("n", "sxc", "<cmd>lua require('substitute.exchange').cancel()<cr>", { noremap = true })
+
+
 --  See `:help lua-guide-autocommands`
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -33,5 +50,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
-
 -- vim: ts=2 sts=2 sw=2 et
