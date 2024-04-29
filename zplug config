@@ -1,0 +1,119 @@
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+##########################################################
+# Requires colors autoload.
+# See termcap(5).
+
+# Set up once, and then reuse. This way it supports user overrides after the
+# plugin is loaded.
+typeset -AHg less_termcap
+
+# bold & blinking mode
+less_termcap[mb]="${fg_bold[red]}"
+less_termcap[md]="${fg_bold[red]}"
+less_termcap[me]="${reset_color}"
+# standout mode
+less_termcap[so]="${fg_bold[yellow]}${bg[blue]}"
+less_termcap[se]="${reset_color}"
+# underlining
+less_termcap[us]="${fg_bold[green]}"
+less_termcap[ue]="${reset_color}"
+
+# Handle $0 according to the standard:
+# https://zdharma-continuum.github.io/Zsh-100-Commits-Club/Zsh-Plugin-Standard.html
+0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
+0="${${(M)0:#/*}:-$PWD/$0}"
+
+# Absolute path to this file's directory.
+typeset -g __colored_man_pages_dir="${0:A:h}"
+
+function colored() {
+  local -a environment
+
+  # Convert associative array to plain array of NAME=VALUE items.
+  local k v
+  for k v in "${(@kv)less_termcap}"; do
+    environment+=( "LESS_TERMCAP_${k}=${v}" )
+  done
+
+  # Prefer `less` whenever available, since we specifically configured
+  # environment for it.
+  environment+=( PAGER="${commands[less]:-$PAGER}" )
+  environment+=( GROFF_NO_SGR=1 )
+
+  # See ./nroff script.
+  if [[ "$OSTYPE" = solaris* ]]; then
+    environment+=( PATH="${__colored_man_pages_dir}:$PATH" )
+  fi
+
+  command env $environment "$@"
+}
+
+# Colorize man and dman/debman (from debian-goodies)
+function man \
+  dman \
+  debman {
+  colored $0 "$@"
+}
+#########################################################################
+zsh-autosuggestions
+#########################################################################
+# Keep at top if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+# Aliases
+alias update="sudo apt update && sudo apt upgrade -y"
+alias distro="cat /etc/*-release"
+# Edit .zshrc
+alias ec='${EDITOR:-vim} ${ZDOTDIR:-$HOME}/.zshrc'
+# Source .zshrc
+alias sc="source $HOME/.zshrc"
+
+# History buffer
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+source ~/.zplug/init.zsh
+# Plugins
+source ~/.zsh/colored-commands.zsh
+zplug "jeffreytse/zsh-vi-mode", defer:2
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+# Theme
+zplug romkatv/powerlevel10k, as:theme, depth:1
+# Cursor style
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+# Keymaps
+ZVM_VI_ESCAPE_BINDKEY=jj
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check; then
+    zplug install
+fi
+# Then, source plugins and add commands to $PATH
+zplug load
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# The plugin will auto execute this zvm_after_init function
+zvm_after_init() {
+  bindkey '^y' autosuggest-accept
+  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /home/greatgatsby/.local/share/lscolors.sh
+  source ~/.zsh/colored-man-pages.plugin.zsh
+
+# Plugins
+}
+export PATH=”$PATH:/home/greatgatsby/.local/bin”
+alias python="/usr/bin/python3.11"
+################################################################
