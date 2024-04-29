@@ -1,8 +1,8 @@
 -- See `:help vim.opt`
 vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
-vim.opt.showmode = false
+vim.opt.showmode = true 
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.breakindent = true
