@@ -1,6 +1,8 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+ZVM_VI_ESCAPE_BINDKEY=jj
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -16,18 +18,16 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # History buffer
-HISTSIZE=500
-SAVEHIST=500
+HISTSIZE=1500
+SAVEHIST=1500
 HISTFILE=~/.zsh_history
 
 # Theme
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 source ~/.zsh/colored-commands.zsh
-zinit snippet OMZP::colored-man-pages
 
 # Movement
 # zinit light IngoMeyer441/zsh-easy-motion
-zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
 # Syntax
@@ -38,10 +38,7 @@ autoload compinit
 compinit
 
 zinit light zdharma-continuum/fast-syntax-highlighting
-zinit ice wait lucid atload'_zsh_autosuggest_start'
-zinit light zsh-users/zsh-autosuggestions
 zinit light hlissner/zsh-autopair 
-
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
@@ -51,7 +48,6 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 
-source /home/greatgatsby/.local/share/lscolors.sh
 ### End of Zinit's installer chunk
 
 #Remove superfluous blanks from each command line being added to the history list
@@ -64,7 +60,7 @@ setopt correct
 setopt noclobber
 
 # Aliases
-alias nv="neovim"
+alias nv='${EDITOR:-vim}'
 alias c="clear"
 alias update="sudo apt update && sudo apt upgrade -y"
 alias distro="cat /etc/*-release"
@@ -74,15 +70,18 @@ alias python="/usr/bin/python3.11"
 
 
 # General Settings
-export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export KEYTIMEOUT=20
-export PATH=”$PATH:/home/greatgatsby/.local/bin”
-ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+export PATH="$PATH:/home/greatgatsby/.local/bin"
 
+# Load after vi-mode
+zvm_after_init() {
+  ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=25
+  bindkey '^y' autosuggest-accept
+  zinit light zsh-users/zsh-autosuggestions
+  source /home/greatgatsby/.local/share/lscolors.sh
+  zinit snippet OMZP::colored-man-pages
+}
 #Keybind
-bindkey '^Y' autosuggest-accept
-ZVM_VI_ESCAPE_BINDKEY='jj'
-
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
