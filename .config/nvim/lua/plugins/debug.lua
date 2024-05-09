@@ -1,4 +1,3 @@
--- debug.lua
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
@@ -19,12 +18,6 @@ return {
 		-- Custom debuggers
 		"leoluz/nvim-dap-go",
 		"microsoft/debugpy",
-		-- Required
-		"nvim-java/lua-async-await",
-		"nvim-java/nvim-java-refactor",
-		"nvim-java/nvim-java-core",
-		"nvim-java/nvim-java-test",
-		"nvim-java/nvim-java-dap",
 	},
 	config = function()
 		local dap = require("dap")
