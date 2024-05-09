@@ -78,7 +78,7 @@ zvm_after_init() {
   ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=25
   bindkey '^y' autosuggest-accept
   zinit light zsh-users/zsh-autosuggestions
-  source /home/greatgatsby/.local/share/lscolors.sh
+  source ~/.zsh/lscolors.sh
   zinit snippet OMZP::colored-man-pages
 }
 #Keybind
