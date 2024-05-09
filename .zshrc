@@ -17,6 +17,8 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+
+
 # History buffer
 HISTSIZE=1500
 SAVEHIST=1500
@@ -24,7 +26,6 @@ HISTFILE=~/.zsh_history
 
 # Theme
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-source ~/.zsh/colored-commands.zsh
 
 # Movement
 # zinit light IngoMeyer441/zsh-easy-motion
@@ -71,6 +72,7 @@ alias git-log="git log --all --oneline --graph"
 
 
 # General Settings
+export EDITOR="nvim"
 export KEYTIMEOUT=20
 export PATH="$PATH:/home/greatgatsby/.local/bin"
 
@@ -79,6 +81,7 @@ zvm_after_init() {
   ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=25
   bindkey '^y' autosuggest-accept
   zinit light zsh-users/zsh-autosuggestions
+  source ~/.zsh/colored-commands.zsh
   source ~/.zsh/lscolors.sh
   zinit snippet OMZP::colored-man-pages
 }
