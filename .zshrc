@@ -67,6 +67,7 @@ alias distro="cat /etc/*-release"
 alias ec='${EDITOR:-vim} ${ZDOTDIR:-$HOME}/.zshrc'
 alias sc="source $HOME/.zshrc"
 alias python="/usr/bin/python3.11"
+alias git-log="git log --all --oneline --graph"
 
 
 # General Settings
