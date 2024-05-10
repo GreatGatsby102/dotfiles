@@ -41,7 +41,13 @@ return {
 		},
 		-- cmd at bottom
 		cmdline = { view = "cmdline" },
-		presets = { long_message_to_split = true, lsp_doc_border = true },
+		presets = {
+			bottom_search = true,
+			command_palette = true,
+			long_message_to_split = true,
+			lsp_doc_border = true,
+			inc_rename = true,
+		},
 	},
 }
 -- vim: ts=2 sts=2 sw=2 et

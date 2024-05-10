@@ -69,6 +69,7 @@ alias ec='${EDITOR:-vim} ${ZDOTDIR:-$HOME}/.zshrc'
 alias sc="source $HOME/.zshrc"
 alias python="/usr/bin/python3.11"
 alias git-log="git log --oneline --graph --parents"
+alias gcc="gcc -std=c99 -Wall -Werror"
 
 
 # General Settings
