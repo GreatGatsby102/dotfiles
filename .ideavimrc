@@ -1,0 +1,101 @@
+set scrolloff=10
+set relativenumber
+" No annoying sounds when typing wrong command
+set visualbell
+set clipboard+=unnamed
+" Fix so cursor blinks on normal mode when leader key is pressed
+set guicursor=i:hor8-iCursor
+" Search settings
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+" don't use ex mode, use q for formatting.
+map q gq
+imap jj <Esc>
+" Set leader
+let mapleader = ' '
+let maplocalleader = ' '
+
+" Plugin for deleting, changing, and adding "surroundings"
+" *ys*, *cs*, *ds*, *s*
+Plug 'tpope/vim-surround'
+
+" comment things out
+Plug 'tpope/vim-commentary'
+
+" highlight copied text
+Plug 'machakann/vim-highlightedyank'
+
+" commentary Plugin *gcc*
+Plug 'tpope/vim-commentary'
+
+"  Plugin for exchanging text in two places.
+Plug 'tommcdo/vim-exchange'
+
+Plug 'michaeljsmith/vim-indent-object'
+
+Plug 'justinmk/vim-sneak'
+
+Plug 'preservim/nerdtree'
+
+Plug 'easymotion/vim-easymotion'
+set noTimeout
+
+" mappings
+map <A> <leader>
+
+" tab (easymotion-s) navigation
+nnoremap <A-n> :tabnext<CR>
+nnoremap <A-p> :tabprev<CR>
+
+" pane navigation
+nnoremap <A-h> <C-w>h
+nnoremap <A-l> <C-w>l
+nnoremap <A-k> <C-w>k
+nnoremap <A-j> <C-w>j
+
+" easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
+
+
+" Vim exchange key bindings
+nmap sx <Plug>(Exchange)
+vmap sx <Plug>(Exchange)
+nmap sxc <Plug>(ExchangeClear)
+nmap sxx <Plug>(ExchangeLine)
+
+" popup navigation
+inoremap <C-j> <action>(popupmenu-selectNext)
+inoremap <C-k> <action>(popupmenu-selectPrev)
+
+" jump around with easymotion
+map <leader>j <Plug>(easymotion-s)
+
+" open or go to open nerdtree (use q to exit)
+map <leader>f :NERDTreeFocus<CR>
+
+" folding
+map <A-zc> :action collapseAllRegions<CR>
+map <A-zo> :action expandAllRegions<CR>
+
+" window splits
+map <A-<> <action>(SplitVertically)
+map <A--> <action>(SplitHorizontally)
+map <A-c> <action>(Unsplit)
+
+" display options
+map <leader>dd <action>(ToggleZenMode)
+
+" Actions
+map <leader>am <action>(ShowIntentionActions)
+
+" File navigation
+map <leader>sf <action>(GotoFile)
+map <leader>so <action>(RecentFiles)
+map <leader>sp <action>(FindInPath)
+map <leader>ns <action>(NewScratchFile)
+
+" Close active tab
+map <leader>q <action>(CloseContent)

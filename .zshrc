@@ -18,6 +18,7 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 
+export EDITOR="nvim"
 
 # History buffer
 HISTSIZE=1500
@@ -32,13 +33,14 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light jeffreytse/zsh-vi-mode
 
 # Syntax
-zinit ice blockf atpull'zinit creinstall -q .'
+zinit ice blockf atpull"zinit creinstall -q ."
 zinit light zsh-users/zsh-completions
 
 autoload compinit
 compinit
 
 zinit light zdharma-continuum/fast-syntax-highlighting
+zinit ice wait 3
 zinit light hlissner/zsh-autopair 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -61,26 +63,25 @@ setopt correct
 setopt noclobber
 
 # Aliases
-alias nv='${EDITOR:-vim}'
+alias nv="${EDITOR:-vim}"
 alias c="clear"
 alias update="sudo apt update && sudo apt upgrade -y"
 alias distro="cat /etc/*-release"
-alias ec='${EDITOR:-vim} ${ZDOTDIR:-$HOME}/.zshrc'
+alias ec="${EDITOR:-vim} ${ZDOTDIR:-$HOME}/.zshrc"
 alias sc="source $HOME/.zshrc"
 alias python="/usr/bin/python3.11"
 alias git-log="git log --oneline --graph --parents"
-alias gcc="gcc -std=c99 -Wall -Werror"
+alias gccw="gcc -std=c99 -Wall -Werror"
 
 
 # General Settings
-export EDITOR="nvim"
 export KEYTIMEOUT=20
 export PATH="$PATH:/home/greatgatsby/.local/bin"
 
 # Load after vi-mode
 zvm_after_init() {
   ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=25
-  bindkey '^y' autosuggest-accept
+  bindkey "^y" autosuggest-accept
   zinit light zsh-users/zsh-autosuggestions
   source ~/.zsh/colored-commands.zsh
   source ~/.zsh/lscolors.sh
